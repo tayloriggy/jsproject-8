@@ -16,6 +16,9 @@ Steps:
 5. 
 
 */
+function addTask () {
+let tasks = ["Wash the dishes", "Do laundry", "Go to the grocery store", "Cook food", "Vacuum", "Mow the lawn"];
+document.getElementById("add").innerHTML = 
 
 localStorage.setItem("task", "Wash the dishes");
 localStorage.setItem("task", "Do laundry");
@@ -24,8 +27,8 @@ localStorage.setItem("task", "Cook food");
 localStorage.setItem("task", "Vacuum");
 localStorage.setItem("task", "Mow the lawn");
 
-let tasks = ["Wash the dishes", "Do laundry", "Go to the grocery store", "Cook food", "Vacuum", "Mow the lawn"];
+
 console.log(tasks);
 
-
+}
 
