@@ -15,20 +15,27 @@ Steps:
 4. Create a delete button to delete the task.
 5. 
 
+
 */
+
+let arrayOfTasks = [""];
+
 function addTask () {
-let tasks = ["Wash the dishes", "Do laundry", "Go to the grocery store", "Cook food", "Vacuum", "Mow the lawn"];
-document.getElementById("add").innerHTML = 
+    let addedTask = document.getElementById("added").value;
+    document.getElementById("add").innerHTML = `${addedTask}`;
+}
 
-localStorage.setItem("task", "Wash the dishes");
-localStorage.setItem("task", "Do laundry");
-localStorage.setItem("task", "Go to the grocery store");
-localStorage.setItem("task", "Cook food");
-localStorage.setItem("task", "Vacuum");
-localStorage.setItem("task", "Mow the lawn");
+function storeTask () {
+    let storedTask = document.getElementById("added").value;
+    localStorage.setItem(addedTask);
+}
 
+function removeTask () {
+    let taskRemoved = 
+    document.getElementById("delete")
+}
 
-console.log(tasks);
-
+function removeTaskFromStorage () {
+    let removedTask = document.getElementById
 }
 
