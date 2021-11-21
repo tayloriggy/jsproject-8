@@ -18,24 +18,24 @@ Steps:
 
 */
 
-let arrayOfTasks = [""];
+
 
 function addTask () {
-    let addedTask = document.getElementById("added").value;
-    document.getElementById("add").innerHTML = `${addedTask}`;
+    let arrayOfTasks = []; //defining an empty array to store todo items in
+    let addedTask = document.getElementById("added").value; //getting the value of the user input and storing it in a variable
+    document.getElementById("add").innerHTML = `${addedTask}`; //displaying the user input value on the webpage
+    let updatedArrayOfTasks = arrayOfTasks.push(addedTask); //pushing newly added task into empty array
+    updatedArrayOfTasks.toString(); //converting into array of strings
+    
+    localStorage.setItem(addedTask, updatedArrayOfTasks); //storing array of tasks in localStorage
+    console.log(updatedArrayOfTasks); //logging the updated array of tasks to console 
+    console.log(typeof updatedArrayOfTasks);
 }
 
-function storeTask () {
-    let storedTask = document.getElementById("added").value;
-    localStorage.setItem(addedTask);
-}
 
 function removeTask () {
     let taskRemoved = 
     document.getElementById("delete")
 }
 
-function removeTaskFromStorage () {
-    let removedTask = document.getElementById
-}
 
