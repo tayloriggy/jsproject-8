@@ -18,24 +18,19 @@ Steps:
 
 */
 
+let arrayOfTasks = []; //defining an empty array to store todo items in
 
-
-function addTask () {
-    let arrayOfTasks = []; //defining an empty array to store todo items in
+function addTaskToLocalStorage () {
     let addedTask = document.getElementById("added").value; //getting the value of the user input and storing it in a variable
-    document.getElementById("add").innerHTML = `${addedTask}`; //displaying the user input value on the webpage
-    let updatedArrayOfTasks = arrayOfTasks.push(addedTask); //pushing newly added task into empty array
-    updatedArrayOfTasks.toString(); //converting into array of strings
-    
-    localStorage.setItem(addedTask, updatedArrayOfTasks); //storing array of tasks in localStorage
-    console.log(updatedArrayOfTasks); //logging the updated array of tasks to console 
-    console.log(typeof updatedArrayOfTasks);
+    arrayOfTasks.push(addedTask); //pushing newly added task into empty array
+    localStorage.setItem("todos", JSON.stringify(arrayOfTasks)); //storing array of tasks in localStorage and converting to string using JSON.stringify
 }
 
-
-function removeTask () {
-    let taskRemoved = 
-    document.getElementById("delete")
+function addTodosToPage (arr) { //this function will display todos onto webpage
+    let addedTodo = localStorage.getItem("todos"); //getting todos from localStorage and storing them in a variable
+    addedTodo = JSON.parse(localStorage.getItem("todos")); //transforming JSON string into a JS object to be displayed on webpage
+    for (let i = 0; i < arrayOfTasks.length; i++) {
+        let newLi = document.createElement("li");
+        document.getElementById("listTodos").innerHTML = addedTodo; //displaying the todos to webpage
+    }
 }
-
-
