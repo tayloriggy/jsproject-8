@@ -18,7 +18,7 @@ Steps:
 
 */
 
-let arrayOfTasks = []; //defining an empty array to store todo items in
+
 
 function addTaskToLocalStorage () {
     let arrayOfTasks;
