@@ -21,16 +21,25 @@ Steps:
 let arrayOfTasks = []; //defining an empty array to store todo items in
 
 function addTaskToLocalStorage () {
+    let arrayOfTasks;
+    if ((localStorage.getItem("todos")) === null) { //if localStorage has no todo items and is null
+        arrayOfTasks = []; //set array to an empty array
+    }
+    else { //if localStorage is not null and has todo items 
+        arrayOfTasks = JSON.parse(localStorage.getItem("todos")); //set array to the array of todo items in localStorage
+    }
+    
     let addedTask = document.getElementById("added").value; //getting the value of the user input and storing it in a variable
     arrayOfTasks.push(addedTask); //pushing newly added task into empty array
     localStorage.setItem("todos", JSON.stringify(arrayOfTasks)); //storing array of tasks in localStorage and converting to string using JSON.stringify
-}
 
-function addTodosToPage (arr) { //this function will display todos onto webpage
-    let addedTodo = localStorage.getItem("todos"); //getting todos from localStorage and storing them in a variable
-    addedTodo = JSON.parse(localStorage.getItem("todos")); //transforming JSON string into a JS object to be displayed on webpage
-    for (let i = 0; i < arrayOfTasks.length; i++) {
-        let newLi = document.createElement("li");
-        document.getElementById("listTodos").innerHTML = addedTodo; //displaying the todos to webpage
+    for (i = 0; i < arrayOfTasks.length; i++) {
+        addTodoToPage();  
     }
 }
+
+function addTodoToPage (addedTask) { //this function will display todos onto webpage
+    let addedTodo = JSON.parse(localStorage.getItem("todos")); //getting todos from localStorage & transforming JSON string into a JS object to be displayed on webpage
+    let li = document.createElement("list"); //creating a li element 
+    document.getElementById("listTodos").innerHTML = addedTodo;
+    }
