@@ -7,7 +7,7 @@
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
-<body>
+<body onload="addLocalStorageTodosToPage()">
     <input type="text" id="added" placeholder="Enter task...">
     <button type="button" onclick="addTaskToLocalStorage()">Add</button>
     <button type="button" onclick="removeTask()">Remove</button><br>

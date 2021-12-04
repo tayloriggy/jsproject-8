@@ -17,8 +17,6 @@ Steps:
 3. In index.html, create an input box to add a task. Create an add button at end.
 4. Create a delete button to delete the task.
 5. 
-
-
 */
 
 function addTaskToLocalStorage () {
@@ -28,8 +26,7 @@ function addTaskToLocalStorage () {
     }
     else { //if localStorage is not null and has todo items
         arrayOfTasks = JSON.parse(localStorage.getItem("todos")); //set arrayOfTasks to the array of todo items in localStorage, 
-        //use JSON parse to convert it to back to an array since this is necessary when retrieving items from localStorage
-        addLocalStorageTodosToPage();
+        //use JSON parse to convert it to back to an array since this is necessary when retrieving items from localStorage 
     }
 
     let addedTask = document.getElementById("added").value; //getting the value of the user input and storing it in variable called addedTask
@@ -42,18 +39,19 @@ function addTaskToLocalStorage () {
     
 }
 
-function addTodoToPage () { //this function will display todos onto webpage one at a time
+function addTodoToPage (task) { //this function will display todos onto webpage one at a time
     let li = document.createElement("LI"); //creating a li element 
-    li.innerHTML = document.getElementById("added").value;
+    li.innerHTML = task;
     document.getElementById("listTodos").appendChild(li);
     
     //document.getElementById("listTodos").innerHTML = addedTodo; //displaying todo to ul element on UI
     //let addedTodo = JSON.parse(localStorage.getItem("todos")); //getting todos from localStorage & converting strings back to array
 }
 
-function addLocalStorageTodosToPage () {
-    for (let i = 0; i < localStorage.length; i++) {
-        addTodoToPage(JSON.parse(localStorage.getItem("todos")));
+function addLocalStorageTodosToPage () { //this will loop through the todos in localStorage and add them to UI for when page is refreshed
+    const arrayOfTasks = JSON.parse(localStorage.getItem("todos"));
+    for (let i = 0; i < arrayOfTasks.length; i++) {
+        addTodoToPage(arrayOfTasks[i]);
     }
 }
 
