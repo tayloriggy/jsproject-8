@@ -49,9 +49,9 @@ function addTodoToPage (task) { //this function will display todos onto webpage 
 }
 
 function addLocalStorageTodosToPage () { //this will loop through the todos in localStorage and add them to UI for when page is refreshed
-    const arrayOfTasks = JSON.parse(localStorage.getItem("todos"));
-    for (let i = 0; i < arrayOfTasks.length; i++) {
-        addTodoToPage(arrayOfTasks[i]);
+    const arrayOfTasks = JSON.parse(localStorage.getItem("todos")); //declaring const arrayOfTasks and converting it to an array so we can loop through it
+    for (let i = 0; i < arrayOfTasks.length; i++) { //looping through arrayOfTasks to grab each todo item
+        addTodoToPage(arrayOfTasks[i]); //calling function addTodoToPage and passing arrayOfTasks[i] through it to print each todo item to UI
     }
 }
 
