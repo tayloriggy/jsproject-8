@@ -35,17 +35,12 @@ function addTaskToLocalStorage () {
     // converting to string using JSON.stringify since localStorage can only store strings
 
     addTodoToPage(addedTask);
-    
-    
 }
 
-function addTodoToPage (task) { //this function will display todos onto webpage one at a time
+function addTodoToPage(task) { //this function will display todos onto webpage one at a time
     let li = document.createElement("LI"); //creating a li element 
-    li.innerHTML = task;
-    document.getElementById("listTodos").appendChild(li);
-    
-    //document.getElementById("listTodos").innerHTML = addedTodo; //displaying todo to ul element on UI
-    //let addedTodo = JSON.parse(localStorage.getItem("todos")); //getting todos from localStorage & converting strings back to array
+    li.innerHTML = task; //setting list item to task parameter
+    document.getElementById("listTodos").appendChild(li); //appending task to UI
 }
 
 function addLocalStorageTodosToPage () { //this will loop through the todos in localStorage and add them to UI for when page is refreshed
@@ -53,6 +48,18 @@ function addLocalStorageTodosToPage () { //this will loop through the todos in l
     for (let i = 0; i < arrayOfTasks.length; i++) { //looping through arrayOfTasks to grab each todo item
         addTodoToPage(arrayOfTasks[i]); //calling function addTodoToPage and passing arrayOfTasks[i] through it to print each todo item to UI
     }
+}
+
+
+function removeTask() {
+    let list = document.getElementById("listTodos");
+    list.removeChild(list.lastElementChild);
+    removeTaskFromLocalStorage();
+    }
+
+function removeTaskFromLocalStorage(){
+    const arrayOfTasks = JSON.parse(localStorage.getItem("todos"));
+    arrayOfTasks.pop();
 }
 
 
