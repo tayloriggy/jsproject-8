@@ -38,14 +38,15 @@ function addTaskToLocalStorage () {
 }
 
 function deleteTaskFromPage(index){
-    let list = document.getElementById("listTodos");
-    let li = document.getElementById("index");
-    list.removeChild(li.index);
+    const list = document.getElementById("listTodos");
+    let li = document.getElementById(index);
+    list.removeChild(li);
 }
 
 function deleteTaskFromLocalStorage(index){
-    let arrayOfTasks = JSON.parse(localStorage.getItem("todos"));
-    localStorage.removeItem(index);
+    const arrayOfTasks = JSON.parse(localStorage.getItem("todos"));
+        arrayOfTasks.splice(index, 1);
+        localStorage.setItem("todos", JSON.stringify(arrayOfTasks));
 }
 
 function deleteItem(index) {
