@@ -1,3 +1,7 @@
 #listTodos{
     display: block;
 }
+
+button {
+    color: navy;
+}

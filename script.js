@@ -37,37 +37,40 @@ function addTaskToLocalStorage () {
     addTodoToPage(addedTask);
 }
 
-function deleteTaskFromPage(index){
+function deleteTaskFromPage(i){
     const list = document.getElementById("listTodos");
-    let li = document.getElementById(index);
+    let li = document.getElementById(i);
     list.removeChild(li);
 }
 
-function deleteTaskFromLocalStorage(index){
-    const arrayOfTasks = JSON.parse(localStorage.getItem("todos"));
-        arrayOfTasks.splice(index, 1);
+function deleteTaskFromLocalStorage(){
+    const arrayOfTasks = JSON.parse(localStorage.getItem("todos"));;
+    for (let i = 0; i < arrayOfTasks.length; i++){
+        arrayOfTasks.splice(i, 1);
         localStorage.setItem("todos", JSON.stringify(arrayOfTasks));
+    }
 }
+    
 
-function deleteItem(index) {
-    deleteTaskFromPage(index);
-    deleteTaskFromLocalStorage(index);
+function deleteItem(i) {
+    deleteTaskFromPage(i);
+    deleteTaskFromLocalStorage();
 }
 
 function addTodoToPage(task) { //this function will display todos onto webpage one at a time
     const arrayOfTasks = JSON.parse(localStorage.getItem("todos"));
-    const index = arrayOfTasks.length - 1; //defining var named index that represents the actual index we are at in arrayOfTasks
-
+    //const index = arrayOfTasks[i] - 1;
     let li = document.createElement("LI"); //creating a li element 
     li.innerHTML = task; //setting list item to task parameter
-    li.setAttribute("id", index); //creating id for li element and setting it equal to index variable
+    li.setAttribute("id", i); //creating id for li element and setting it equal to index
 
     let deleteBtn = document.createElement("BUTTON"); //creating a button element
     deleteBtn.innerHTML = "Delete"; //setting button item to display "Delete" on UI
     li.appendChild(deleteBtn); //appending button to UI
+    deleteBtn.style.marginLeft = "75px";
     document.getElementById("listTodos").appendChild(li); //appending list element to UI
-
-    deleteBtn.onclick = function() { deleteItem(index) }; //using onclick event to run deleteItem function when button is clicked by user
+    
+    deleteBtn.onclick = function() { deleteItem(i) }; //using onclick event to run deleteItem function when button is clicked by user
 }
 
 function addLocalStorageTodosToPage () { //this will loop through the todos in localStorage and add them to UI for when page is refreshed
