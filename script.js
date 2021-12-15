@@ -34,35 +34,32 @@ function addTaskToLocalStorage () {
     localStorage.setItem("todos", JSON.stringify(arrayOfTasks)); //storing arrayOfTasks in localStorage and 
     // converting to string using JSON.stringify since localStorage can only store strings
 
-    addTodoToPage(addedTask, i);
+    addTodoToPage(addedTask);
 }
 
-function deleteTaskFromPage(){
-    const list = document.getElementById("listTodos");
-    let li = document.getElementById(i);
-    list.removeChild(li);
+function deleteTaskFromPage(index){
+    let li = document.getElementById(index);
+    li.remove();
 }
 
-function deleteTaskFromLocalStorage(){
+function deleteTaskFromLocalStorage(index){
     const arrayOfTasks = JSON.parse(localStorage.getItem("todos"));
-    for (let i = 0; i < arrayOfTasks.length; i++){
-        arrayOfTasks.splice(i, 1);
-        localStorage.setItem("todos", JSON.stringify(arrayOfTasks));
-    }
+    arrayOfTasks.splice(index, 1);
+    localStorage.setItem("todos", JSON.stringify(arrayOfTasks));
 }
     
 
-function deleteItem() {
-    deleteTaskFromPage();
-    deleteTaskFromLocalStorage();
+function deleteItem(index) {
+    deleteTaskFromPage(index);
+    deleteTaskFromLocalStorage(index);
 }
 
-function addTodoToPage(task, i) { //this function will display todos onto webpage one at a time
+function addTodoToPage(task, index) { //this function will display todos onto webpage one at a time
     const arrayOfTasks = JSON.parse(localStorage.getItem("todos"));
-    //const index = arrayOfTasks[i];
+    let addedTask = document.getElementById("added").value;
     let li = document.createElement("LI"); //creating a li element 
     li.innerHTML = task; //setting list item to task parameter
-    li.setAttribute("id", i); //creating id for li element and setting it equal to index
+    li.setAttribute("id", index); //creating id for li element and setting it equal to index parameter
 
     let deleteBtn = document.createElement("BUTTON"); //creating a button element
     deleteBtn.innerHTML = "Delete"; //setting button item to display "Delete" on UI
@@ -72,16 +69,14 @@ function addTodoToPage(task, i) { //this function will display todos onto webpag
 
     let clearInput = document.getElementById("added"); //grabbing id of input element
     clearInput.value = ""; //clearing out input box each time a new task is added
-
-    console.log(i);
     
-    deleteBtn.onclick = function() { deleteItem(i) }; //using onclick event to run deleteItem function when button is clicked by user
+    deleteBtn.onclick = function() { deleteItem(index) }; //using onclick event to run deleteItem function when button is clicked by user
 }
 
 function addLocalStorageTodosToPage() { //this will loop through the todos in localStorage and add them to UI for when page is refreshed
     const arrayOfTasks = JSON.parse(localStorage.getItem("todos")) || []; //declaring const arrayOfTasks and converting it to an array so we can loop through it
     for (let i = 0; i < arrayOfTasks.length; i++) { //looping through arrayOfTasks to grab each todo item
-        addTodoToPage(arrayOfTasks[i]); //calling function addTodoToPage and passing arrayOfTasks[i] through it to print each todo item to UI
+        addTodoToPage(arrayOfTasks[i], i); //calling function addTodoToPage and passing arrayOfTasks[i] through it to print each todo item to UI
     }
 }
 
