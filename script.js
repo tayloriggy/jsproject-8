@@ -34,7 +34,8 @@ function addTaskToLocalStorage () {
     localStorage.setItem("todos", JSON.stringify(arrayOfTasks)); //storing arrayOfTasks in localStorage and 
     // converting to string using JSON.stringify since localStorage can only store strings
 
-    addTodoToPage(addedTask);
+    addTodoToPage(addedTask, arrayOfTasks); //passing in addedTask which is what user enters & passing in arrayOfTasks which is our entire
+    //array of todos in localStorage
 }
 
 function deleteTaskFromPage(index){
