@@ -69,7 +69,7 @@ function addTodoToPage(task, index) { //this function will display todos onto we
     document.getElementById("listTodos").appendChild(li); //appending list element to UI
 
     let clearInput = document.getElementById("added"); //grabbing id of input element
-    clearInput.value = ""; //clearing out input box each time a new task is added
+    clearInput.value = ""; //clearing out input box each time a new task is added by setting value to an empty string
     
     deleteBtn.onclick = function() { deleteItem(index) }; //using onclick event to run deleteItem function when button is clicked by user
 }
@@ -77,7 +77,8 @@ function addTodoToPage(task, index) { //this function will display todos onto we
 function addLocalStorageTodosToPage() { //this will loop through the todos in localStorage and add them to UI for when page is refreshed
     const arrayOfTasks = JSON.parse(localStorage.getItem("todos")) || []; //declaring const arrayOfTasks and converting it to an array so we can loop through it
     for (let i = 0; i < arrayOfTasks.length; i++) { //looping through arrayOfTasks to grab each todo item
-        addTodoToPage(arrayOfTasks[i], i); //calling function addTodoToPage and passing arrayOfTasks[i] through it to print each todo item to UI
+        addTodoToPage(arrayOfTasks[i], i); //calling function addTodoToPage and passing arrayOfTasks[i] through it to print each todo item to UI 
+        //and also passing in i as the index
     }
 }
 
