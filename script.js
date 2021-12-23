@@ -22,7 +22,12 @@ Steps:
 function addTaskToLocalStorage () {
     let arrayOfTasks; //defining an array to store the todos in
     if ((localStorage.getItem("todos")) === null) { //if localStorage has no todo items and is null
-        arrayOfTasks = []; //set array to an empty array
+        axios.get("https://jsonplaceholder.typicode.com/todos") //using GET request with axios API to get all todos from jsonplaceholder url
+            .then(function (response){ //using . (which is a Javascript promise) and then to do something, using function with parameter of response
+                for (i = 0; i < 5; i ++) { //looping through first 5 todos from jsonplaceholder url
+                    arrayOfTasks.push(response.data[i].title); //pushing todos into localStorage array
+                }
+            })
     }
     else { //if localStorage is not null and has todo items
         arrayOfTasks = JSON.parse(localStorage.getItem("todos")); //set arrayOfTasks to the array of todo items in localStorage, 
