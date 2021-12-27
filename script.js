@@ -21,17 +21,21 @@ Steps:
 
 function addTaskToLocalStorage () {
     let arrayOfTasks; //defining an array to store the todos in
-    if ((localStorage.getItem("todos")) === null) { //if localStorage has no todo items and is null
-        axios.get("https://jsonplaceholder.typicode.com/todos") //using GET request with axios API to get all todos from jsonplaceholder url
-            .then(function (response){ //using . (which is a Javascript promise) and then to do something, using function with parameter of response
-                for (i = 0; i < 5; i ++) { //looping through first 5 todos from jsonplaceholder url
-                    arrayOfTasks.push(response.data[i].title); //pushing todos into localStorage array
-                }
-            })
+    if ((localStorage.getItem()) === null) { //if localStorage has no todo items and is null
+        axios.get("https://jsonplaceholder.typicode.com/todos") //using GET request with axios API to get all todo from jsonplaceholder url
+        .then(function(response){ //using . (which is a Javascript promise) and then to do something, using function with parameter of response
+            for (let i = 0; i < 5; i ++) { //looping through first 5 todos from jsonplaceholder url
+                arrayOfTasks.push(response.data[i].title); //pushing the first five todo titles into localStorage array
+            }
+            localStorage.setItem("todos", JSON.stringify(arrayOfTasks)); 
+            
+    })
+
     }
     else { //if localStorage is not null and has todo items
-        arrayOfTasks = JSON.parse(localStorage.getItem("todos")); //set arrayOfTasks to the array of todo items in localStorage, 
+        arrayOfTasks = JSON.parse(localStorage.getItem()); //set arrayOfTasks to the array of todo items in localStorage, 
         //use JSON parse to convert it back to an array since this is necessary when retrieving items from localStorage 
+       
     }
 
     let addedTask = document.getElementById("added").value; //getting the value of the user input and storing it in variable called addedTask
