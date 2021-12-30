@@ -54,12 +54,6 @@ function addTaskToLocalStorage () {
         
     }
 
-   
-
-                
-   
-
-    
 }
 
 function deleteTaskFromPage(index){
@@ -70,7 +64,7 @@ function deleteTaskFromPage(index){
 function deleteTaskFromLocalStorage(index){
     const arrayOfTasks = JSON.parse(localStorage.getItem(""));
     arrayOfTasks.splice(index, 1);
-    localStorage.setItem("todos", JSON.stringify(arrayOfTasks));
+    localStorage.setItem("", JSON.stringify(arrayOfTasks));
 }
     
 
@@ -80,7 +74,7 @@ function deleteItem(index) {
 }
 
 function addTodoToPage(task, index) { //this function will display todos onto webpage one at a time
-    const arrayOfTasks = JSON.parse(localStorage.getItem("todos"));
+    const arrayOfTasks = JSON.parse(localStorage.getItem(""));
     let addedTask = document.getElementById("added").value;
     let li = document.createElement("LI"); //creating a li element 
     li.innerHTML = task; //setting list item to task parameter
@@ -99,7 +93,7 @@ function addTodoToPage(task, index) { //this function will display todos onto we
 }
 
 function addLocalStorageTodosToPage() { //this will loop through the todos in localStorage and add them to UI for when page is refreshed
-    const arrayOfTasks = JSON.parse(localStorage.getItem("todos")) || []; //declaring const arrayOfTasks and converting it to an array so we can loop through it
+    const arrayOfTasks = JSON.parse(localStorage.getItem("")) || []; //declaring const arrayOfTasks and converting it to an array so we can loop through it
     for (let i = 0; i < arrayOfTasks.length; i++) { //looping through arrayOfTasks to grab each todo item
         addTodoToPage(arrayOfTasks[i], i); //calling function addTodoToPage and passing arrayOfTasks[i] through it to print each todo item to UI 
         //and also passing in i as the index
