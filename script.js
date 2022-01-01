@@ -27,34 +27,39 @@ function addTaskToLocalStorage () {
                 for (let i = 0; i < 5; i ++) { //looping through first 5 todos from jsonplaceholder url
                     arrayOfTasks.push(response.data[i].title); //pushing the first five todo titles into localStorage array
                 }
-                let addedTask = document.getElementById("added").value; //getting the value of the user input and storing it in variable called addedTask
-                arrayOfTasks.push(addedTask); //pushing newly added task into arrayOfTasks
+                
                 localStorage.setItem("todos", JSON.stringify(arrayOfTasks)); //storing arrayOfTasks in localStorage and 
                 // converting to string using JSON.stringify since localStorage can only store strings
+                addLocalStorageTodosToPage();
                 
-                addTodoToPage(addedTask, arrayOfTasks); //passing in addedTask which is what user enters & passing in arrayOfTasks which is our entire
-                //array of todos in localStorage
-                
-                
-            
             })
     }
 
     else { //if localStorage is not null and has todo items
+        addLocalStorageTodosToPage()
+    }
+}
+
+function userAddTaskToPage() {
+    let arrayOfTasks = []; //defining an array to store the todos in
+    if ((localStorage.getItem("todos")) === null) { //if localStorage has no todo items and is null
+        arrayOfTasks = []; //set array to an empty array
+    }
+    else { //if localStorage is not null and has todo items
         arrayOfTasks = JSON.parse(localStorage.getItem("todos")); //set arrayOfTasks to the array of todo items in localStorage, 
-        //use JSON parse to convert it back to an array since this is necessary when retrieving items from localStorage 
-        let addedTask = document.getElementById("added").value; //getting the value of the user input and storing it in variable called addedTask
-        arrayOfTasks.push(addedTask); //pushing newly added task into arrayOfTasks
-        localStorage.setItem("todos", JSON.stringify(arrayOfTasks)); //storing arrayOfTasks in localStorage and 
-        // converting to string using JSON.stringify since localStorage can only store strings
-        
-        addTodoToPage(addedTask, arrayOfTasks); //passing in addedTask which is what user enters & passing in arrayOfTasks which is our entire
-        //array of todos in localStorage
-        
-        
     }
 
+    //use JSON parse to convert it back to an array since this is necessary when retrieving items from localStorage 
+    let addedTask = document.getElementById("added").value; //getting the value of the user input and storing it in variable called addedTask
+    arrayOfTasks.push(addedTask); //pushing newly added task into arrayOfTasks
+    localStorage.setItem("todos", JSON.stringify(arrayOfTasks)); //storing arrayOfTasks in localStorage and 
+    // converting to string using JSON.stringify since localStorage can only store strings
+
+    addTodoToPage(addedTask, arrayOfTasks); //passing in addedTask which is what user enters & passing in arrayOfTasks which is our entire
+    //array of todos in localStorage
 }
+
+
 
 function deleteTaskFromPage(index){
     let li = document.getElementById(index);
@@ -98,7 +103,6 @@ function addLocalStorageTodosToPage() { //this will loop through the todos in lo
         addTodoToPage(arrayOfTasks[i], i); //calling function addTodoToPage and passing arrayOfTasks[i] through it to print each todo item to UI 
         //and also passing in i as the index
     }
-    addTaskToLocalStorage();
 }
 
 
