@@ -12,11 +12,10 @@ To convert it back to an array, you'll need JSON parse.
 
 Steps:
 
-1. Create items in localStorage to be stored.
-2. Create a list of todos in an array.
-3. In index.html, create an input box to add a task. Create an add button at end.
-4. Create a delete button to delete the task.
-5. 
+1. When page loads, check if value of todos key in localStorage is null
+2. If null, make a request to JSONplaceholder to get some todos
+3. Loop through first 5 todos in JSONplaceholder and push them into array in localStorage
+4. Display each todo in the UI 
 */
 
 function addTaskToLocalStorage () {
