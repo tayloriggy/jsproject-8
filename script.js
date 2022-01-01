@@ -21,7 +21,7 @@ Steps:
 
 function addTaskToLocalStorage () {
     let arrayOfTasks = []; //defining an array to store the todos in
-    if (localStorage.getItem("") === null) { //if localStorage has no todo items and is null
+    if (localStorage.getItem("todos") === null) { //if localStorage has no todo items and is null
         axios.get("https://jsonplaceholder.typicode.com/todos") //using GET request with axios API to get all todo from jsonplaceholder url
             .then(function (response){ //using . (which is a Javascript promise) and then to do something, using function with parameter of response
                 for (let i = 0; i < 5; i ++) { //looping through first 5 todos from jsonplaceholder url
@@ -29,7 +29,7 @@ function addTaskToLocalStorage () {
                 }
                 let addedTask = document.getElementById("added").value; //getting the value of the user input and storing it in variable called addedTask
                 arrayOfTasks.push(addedTask); //pushing newly added task into arrayOfTasks
-                localStorage.setItem("", JSON.stringify(arrayOfTasks)); //storing arrayOfTasks in localStorage and 
+                localStorage.setItem("todos", JSON.stringify(arrayOfTasks)); //storing arrayOfTasks in localStorage and 
                 // converting to string using JSON.stringify since localStorage can only store strings
                 
                 addTodoToPage(addedTask, arrayOfTasks); //passing in addedTask which is what user enters & passing in arrayOfTasks which is our entire
@@ -41,11 +41,11 @@ function addTaskToLocalStorage () {
     }
 
     else { //if localStorage is not null and has todo items
-        arrayOfTasks = JSON.parse(localStorage.getItem("")); //set arrayOfTasks to the array of todo items in localStorage, 
+        arrayOfTasks = JSON.parse(localStorage.getItem("todos")); //set arrayOfTasks to the array of todo items in localStorage, 
         //use JSON parse to convert it back to an array since this is necessary when retrieving items from localStorage 
         let addedTask = document.getElementById("added").value; //getting the value of the user input and storing it in variable called addedTask
         arrayOfTasks.push(addedTask); //pushing newly added task into arrayOfTasks
-        localStorage.setItem("", JSON.stringify(arrayOfTasks)); //storing arrayOfTasks in localStorage and 
+        localStorage.setItem("todos", JSON.stringify(arrayOfTasks)); //storing arrayOfTasks in localStorage and 
         // converting to string using JSON.stringify since localStorage can only store strings
         
         addTodoToPage(addedTask, arrayOfTasks); //passing in addedTask which is what user enters & passing in arrayOfTasks which is our entire
@@ -62,9 +62,9 @@ function deleteTaskFromPage(index){
 }
 
 function deleteTaskFromLocalStorage(index){
-    const arrayOfTasks = JSON.parse(localStorage.getItem(""));
+    const arrayOfTasks = JSON.parse(localStorage.getItem("todos"));
     arrayOfTasks.splice(index, 1);
-    localStorage.setItem("", JSON.stringify(arrayOfTasks));
+    localStorage.setItem("todos", JSON.stringify(arrayOfTasks));
 }
     
 
@@ -74,7 +74,7 @@ function deleteItem(index) {
 }
 
 function addTodoToPage(task, index) { //this function will display todos onto webpage one at a time
-    const arrayOfTasks = JSON.parse(localStorage.getItem(""));
+    const arrayOfTasks = JSON.parse(localStorage.getItem("todos"));
     let addedTask = document.getElementById("added").value;
     let li = document.createElement("LI"); //creating a li element 
     li.innerHTML = task; //setting list item to task parameter
@@ -93,11 +93,12 @@ function addTodoToPage(task, index) { //this function will display todos onto we
 }
 
 function addLocalStorageTodosToPage() { //this will loop through the todos in localStorage and add them to UI for when page is refreshed
-    const arrayOfTasks = JSON.parse(localStorage.getItem("")) || []; //declaring const arrayOfTasks and converting it to an array so we can loop through it
+    const arrayOfTasks = JSON.parse(localStorage.getItem("todos")) || []; //declaring const arrayOfTasks and converting it to an array so we can loop through it
     for (let i = 0; i < arrayOfTasks.length; i++) { //looping through arrayOfTasks to grab each todo item
         addTodoToPage(arrayOfTasks[i], i); //calling function addTodoToPage and passing arrayOfTasks[i] through it to print each todo item to UI 
         //and also passing in i as the index
     }
+    addTaskToLocalStorage();
 }
 
 
